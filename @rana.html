@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#fff5f9,#fde7f9,#f9e8ff);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-family:'Hind Siliguri',sans-serif;
+    position:relative;
+  }
+  .title{
+    font-family:'Dancing Script',cursive;
+    font-size:4.5rem;
+    text-align:center;
+    background:linear-gradient(45deg,#ff6b9d,#ff8eab);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:30px;
+    animation:g 3s infinite alternate;
+    z-index:2;
+  }
+  @keyframes g{0%{text-shadow:0 0 20px #ff6b9d50}100%{text-shadow:0 0 40px #ff6b9d90}}
+  .open-btn{
+    padding:16px 50px;
+    font-size:2rem;
+    font-family:'Dancing Script',cursive;
+    background:#ff8eab;
+    color:white;
+    border:none;
+    border-radius:60px;
+    cursor:pointer;
+    box-shadow:0 10px 30px #ff6b9d50,0 0 20px #ff6b9d60;
+    animation:pulse 2s infinite,bounce 2s infinite;
+    transition:.3s;
+    z-index:2;
+  }
+  .open-btn:hover{transform:scale(1.05)}
+  @keyframes pulse{0%,100%{box-shadow:0 10px 30px #ff6b9d50,0 0 20px #ff6b9d60}50%{box-shadow:0 20px 50px #ff6b9d80,0 0 50px #ff6b9da0}}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  /* Card */
+  .card{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    width:90%;
+    max-width:500px;
+    max-height:80vh;
+    background:#fffefc;
+    border-radius:25px;
+    padding:30px 20px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.35);
+    opacity:0;
+    transition:.6s cubic-bezier(.68,-.55,.265,1.55);
+    z-index:3;
+    display:flex;
+    flex-direction:column;
+  }
+  .card.show{transform:translate(-50%,-50%) scale(1);opacity:1}
+
+  /* Scrollable text */
+  .content{
+    overflow-y:auto;
+    -webkit-overflow-scrolling: touch;
+    flex:1;
+    font-size:1.45rem;
+    line-height:2.2;
+    color:#333;
+    margin-bottom:15px;
+  }
+  .signature{
+    text-align:right;
+    font-family:'Dancing Script',cursive;
+    font-size:2.8rem;
+    color:#ff6b9d;
+    margin:15px 0 10px;
+  }
+  .close-btn{
+    padding:12px 40px;
+    font-size:1.4rem;
+    background:#ff8eab;
+    color:white;
+    border:none;
+    border-radius:35px;
+    cursor:pointer;
+    align-self:center;
+    margin-bottom:5px;
+  }
+  .close-btn:hover{background:#ff6b9d}
+
+  /* Floating hearts behind the card */
+  .heart{
+    position:absolute;
+    font-size:2rem;
+    color:#ff6b9d50;
+    animation:float linear infinite;
+    user-select:none;
+    pointer-events:none;
+    z-index:1;
+  }
+  @keyframes float{
+    0%{transform:translateY(100vh) scale(1);}
+    100%{transform:translateY(-50px) scale(1.3);}
+  }
+</style>
+</head>
+<body>
+
+<h1 class="title">For My Love</h1>
+<button class="open-btn" id="start">Open it</button>
+
+<div class="card" id="card">
+  <div class="content" id="text1"></div>
+  <div class="signature">@rana&lt;3</div>
+  <button class="close-btn" onclick="closeCard()">Close</button>
+</div>
+
+<script>
+const start = document.getElementById('start');
+const card = document.getElementById('card');
+const text1 = document.getElementById('text1');
+let saved = '';
+let typingInterval = null;
+
+const message = `प्रिय सोनिया,
+
+यो चलेको हावा, बगेको पानी, चम्केको घाम र हाँसेका हिमालहरू… सबैलाई साक्षी राखी तिमीलाई मेरो मनको भावना सम्बोधनगर्दैछु। संसारमा आफ्नो अस्तित्व खोज्दै हिँडेको म, 
+साँचो माया के हो भन्ने कुरा मैले तिमीसँग मात्र बुझेँ र म यसलाई गुमाउन चाहदिन।
+
+पापी, स्वार्थी र निच संसारमा, मैले एक कलिलो, असल, शान्त र निर्दोष नारीको हात समाए यो सम्बन्ध मेरो स्वार्थको लागि लिएको होइन। यो सम्बन्ध हाम्रो रजी, साची, बचा राखी मात्र अघि बढेको हो। माया भन्न एउटा अटुट, अमूल्य, बलियो सम्बन्ध रहेछ। यसमा हामीले धेरै कुरा सिक्यौं र बुझ्यौं। तर यस समयमा, म बाट तिमी प्रति धेरै ठोस र गल्ती भयो। यो भूल अनजानमा भएको हो। तिम्रो साथ भएको बेला, तिमीलाई धेरै बुझ्न चाहन्छु। तिम्रो खुशीमा मेरो खुशी र तिम्रो दुखीमा मेरो साथ सधैं रहने छ।
+
+संसारमै पहिलो बत्ती थोमस अल्भा एडिसनले हजारौं गल्तीपछि मात्र बाल्न सफल भएका थिए। उनको त्यही गल्तीले आज मध्यरातमा पनि संसार उज्यालो छ। मेरो यो गल्तीलाई नयाँ सुरुवातको बत्ती सम्झी देऊ। अबदेखि म मेरो बोली मात्र होइन, व्यवहार पनि सुधारेर तिम्रो लागि सधैं योग्य बन्नेछु। तिम्रो मन बुझ्नेछु, तिमीलाई कहिल्यै दुख्न दिनेछैन।
+
+जस्तै 
+डालीबिना रुख अधुरो,
+हिउँबिना हिमाल अधुरो,
+जलबिना माछा अधुरो,
+जूनबिना रात अधुरो…
+त्यसैगरी तिमीबिना म अधुरो छु।
+
+नभुल्नु माया मनभरि फुल्यो,
+यो जूनि तिम्रै भर परीयो।
+
+ मेरी सोनिया,
+ मेरो मुटु तिमीलाई मात्र पर्खिरहेका छन्।`;
+
+start.onclick = () => {
+  start.style.display = 'none';
+  card.classList.add('show');
+
+  if(saved){
+    text1.innerHTML = saved;
+    return;
+  }
+
+  let i = 0;
+  typingInterval = setInterval(() => {
+    text1.innerHTML += message[i] === '\n' ? '<br>' : message[i];
+    i++;
+    if(i >= message.length){
+      clearInterval(typingInterval);
+      saved = text1.innerHTML;
+    }
+  }, 30);
+};
+
+function closeCard(){
+  card.classList.remove('show');
+  if(typingInterval) clearInterval(typingInterval);
+  setTimeout(()=>{ start.style.display='block'; }, 500);
+}
+
+/* Floating hearts */
+function createHearts(num){
+  for(let i=0;i<num;i++){
+    const heart = document.createElement('div');
+    heart.className='heart';
+    heart.innerHTML='❤️';
+    heart.style.left = Math.random()*100 + 'vw';
+    heart.style.animationDuration = (5 + Math.random()*5)+'s';
+    heart.style.fontSize = (18 + Math.random()*18)+'px';
+    heart.style.opacity = Math.random()*0.6 + 0.3;
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(), 10000);
+  }
+}
+
+setInterval(()=>createHearts(4), 1000);
+</script>
+
+</body>
+</html>
